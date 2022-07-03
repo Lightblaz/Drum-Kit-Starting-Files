@@ -5,11 +5,13 @@ for(var i =0 ; i < buttonarr.length ; i ++){
   buttonarr[i].addEventListener("click" , function(){
     var buttonInnerHtml = this.innerHTML;
     makesound(buttonInnerHtml);
+    buttonAnimation(buttonInnerHtml);
   })
 }
 
 document.addEventListener("keydown" , function(event){
   makesound(event.key);
+  buttonAnimation(event.key);
 });
 
 function makesound(key){
@@ -49,4 +51,10 @@ case "l":
   break;
   default:
   }
+}
+
+function buttonAnimation(currentkey){
+  var activebutton = document.querySelector("." + currentkey);
+  activebutton.classList.add("pressed");
+  setTimeout(function (){activebutton.classList.remove("pressed");} ,200);
 }
